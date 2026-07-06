@@ -1,0 +1,491 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    /* Bases neutras y limpias para descansar la vista */
+    --blanco-puro: #ffffff;
+    --lila-fondo: #fcfbfe;       /* Blanco con un levísimo matiz lila, muy limpio */
+    --lila-destello: #f3ecf7;    /* Lila suave para separar secciones */
+    --lila-acento: #dfcfe3;      /* Toques lila sutiles */
+    
+    /* El rosa como color de acento y destaque (no de fondo) */
+    --rosa-elegante: #ba7b7c;    /* Rosa viejo de la imagen para títulos */
+    --rosa-medio: #c88e83;       /* Rosa cálido para textos secundarios */
+    --rosa-suave: #f7ebeb;       /* Rosa ultra claro para detalles mínimos */
+    
+    /* Contrastes y elegancia */
+    --oro-rosa: #caa873;         /* Dorado/Oro rosa para elementos premium */
+    --texto-oscuro: #3d3535;     /* Gris marrón oscuro suave para máxima lectura */
+
+    /* Fuentes */
+    --font-cursive: 'Great Vibes', cursive;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--blanco-puro);
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+section {
+    padding: 100px 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* --- Tipografías con el Rosa como Destaque --- */
+h1 {
+    font-family: var(--font-cursive);
+    font-size: clamp(3.8rem, 8vw, 5.8rem);
+    color: var(--rosa-elegante);
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.02);
+}
+
+h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    color: var(--texto-oscuro);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--rosa-medio);
+    margin: 15px auto 0 auto;
+}
+
+h3 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--texto-oscuro);
+    font-weight: 500;
+}
+
+p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    color: #554d4d;
+}
+
+/* --- Tarjetas Minimalistas (Base Blanca) --- */
+.card, .info-card {
+    background: var(--blanco-puro);
+    border: 1px solid #f0edf2;
+    padding: 45px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(160, 150, 160, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover, .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(186, 123, 124, 0.08);
+    border-color: var(--lila-acento);
+}
+
+/* --- Botones Dorados / Oro Rosa --- */
+button, .btn {
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, var(--oro-rosa), #bfa06b);
+    color: var(--blanco-puro);
+    border: none;
+    padding: 16px 42px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(202, 168, 115, 0.25);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    letter-spacing: 3px;
+    box-shadow: 0 6px 22px rgba(202, 168, 115, 0.4);
+    background: linear-gradient(135deg, #bfa06b, var(--oro-rosa));
+}
+
+/* ==========================================================================
+   2. SECCIONES ESPECÍFICAS
+   ========================================================================== */
+
+/* Pantalla Inicial (Welcome) */
+#welcome {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--blanco-puro) 0%, var(--lila-fondo) 50%, var(--lila-destello) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#welcome.fade-out {
+    transform: translateY(-100vh);
+}
+
+#welcome .overlay {
+    padding: 50px 40px;
+    border: 1px solid rgba(223, 207, 227, 0.4);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+}
+
+#welcome .subtitle {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.85rem;
+    color: var(--rosa-medio);
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.82)), 
+                url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1200') no-repeat center center/cover;
+    text-align: center;
+}
+
+.hero .event {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--texto-oscuro);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    color: var(--rosa-elegante);
+    margin-bottom: 15px;
+}
+
+.hero h2::after {
+    display: none;
+}
+
+.hero h1 {
+    margin-bottom: 35px;
+    color: var(--texto-oscuro);
+}
+
+.hero h3 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--oro-rosa);
+}
+
+/* Cuenta Regresiva */
+#countdown {
+    background-color: var(--lila-fondo);
+    border-top: 1px solid #f5eff7;
+    border-bottom: 1px solid #f5eff7;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.countdown div {
+    background: var(--blanco-puro);
+    padding: 24px 20px;
+    min-width: 110px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(150, 140, 150, 0.03);
+    border: 1px solid #f2eef5;
+}
+
+.countdown span {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    color: var(--rosa-elegante);
+    display: block;
+    font-weight: 500;
+}
+
+.countdown small {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: #7c7272;
+}
+
+/* Mensaje */
+#message {
+    background-color: var(--blanco-puro);
+}
+
+#message p {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: #554d4d;
+    line-height: 1.8;
+}
+
+/* Padres y Padrinos */
+#parents, #godparents {
+    background-color: var(--blanco-puro);
+    padding: 50px 0;
+}
+
+#parents .card, #godparents .card {
+    max-width: 520px;
+    margin: 0 auto;
+    border-top: 2px solid var(--lila-acento);
+}
+
+#parents h3, #godparents h3 {
+    font-size: 1.5rem;
+    color: var(--texto-oscuro);
+}
+
+#parents p, #godparents p {
+    font-family: var(--font-cursive);
+    font-size: 2.2rem;
+    color: var(--rosa-elegante);
+    margin: 10px 0;
+}
+
+#parents p::after, #godparents p::after {
+    display: none;
+}
+
+/* Información del Evento */
+#information {
+    background-color: var(--lila-fondo);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.info-card h3 {
+    color: var(--rosa-elegante);
+    margin-bottom: 12px;
+}
+
+.info-card p:first-of-type {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--oro-rosa);
+    margin-bottom: 10px;
+}
+
+/* Ubicación */
+#location {
+    background-color: var(--blanco-puro);
+}
+
+#location iframe {
+    margin-top: 35px;
+    border-radius: 8px;
+    box-shadow: 0 10px 35px rgba(150, 140, 150, 0.06);
+    border: 1px solid #edeaf0 !important;
+    max-width: 100%;
+}
+
+/* Galería (Corregido Responsivo de raíz) */
+#gallery {
+    background-color: var(--lila-fondo);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna base en móviles */
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+}
+
+/* RSVP Formulario */
+#rsvp {
+    background-color: var(--blanco-puro);
+}
+
+form {
+    max-width: 500px;
+    margin: 40px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+form input, form textarea {
+    font-family: var(--font-sans);
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #e3deee;
+    background-color: #faf9fc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--texto-oscuro);
+    transition: all 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--rosa-elegante);
+    background-color: var(--blanco-puro);
+    box-shadow: 0 0 8px rgba(186, 123, 124, 0.15);
+}
+
+form textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Despedida */
+#thanks {
+    background: linear-gradient(to bottom, var(--blanco-puro), var(--lila-destello));
+    padding: 120px 0;
+}
+
+#thanks h2 {
+    font-family: var(--font-cursive);
+    font-size: 4.2rem;
+    text-transform: none;
+    letter-spacing: 1px;
+    color: var(--rosa-elegante);
+}
+
+#thanks h2::after {
+    display: none;
+}
+
+/* Footer */
+footer {
+    background-color: #2b2525;
+    color: var(--blanco-puro);
+    text-align: center;
+    padding: 35px 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Pantallas medianas (Tablets) */
+@media (min-width: 600px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Columnas para información */
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Columnas de fotos */
+    }
+}
+
+/* Pantallas grandes (Computadoras) */
+@media (min-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 Columnas de fotos perfectas */
+    }
+}
+
+/* Ajustes específicos para móviles pequeños */
+@media (max-width: 500px) {
+    section {
+        padding: 60px 0;
+    }
+    
+    .countdown {
+        gap: 12px;
+    }
+    
+    .countdown div {
+        min-width: 80px;
+        padding: 16px 10px;
+        flex: 1 1 40%; /* Hace que se acomoden de 2 en 2 simétricamente */
+    }
+    
+    .countdown span {
+        font-size: 1.8rem;
+    }
+    
+    #welcome .overlay {
+        padding: 30px 20px;
+    }
+    
+    form {
+        padding: 0 5px;
+    }
+    
+    .gallery-grid img {
+        height: 280px; /* Reduce un poco el alto en pantallas chicas para no scrollear tanto */
+    }
+}

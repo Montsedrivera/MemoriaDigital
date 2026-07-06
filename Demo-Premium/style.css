@@ -1,0 +1,742 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    /* Paleta de la Imagen - Enfoque Orgánico y Elegante */
+    --crema-fondo: #ebead2;      /* Fondo suave para secciones de descanso */
+    --verde-glauco: #d7d59f;     /* Líneas divisorias y sutiles bordes */
+    --verde-musgo: #9fa84a;      /* Títulos secundarios y fechas */
+    --verde-oliva: #62722b;      /* Acentos tipográficos importantes */
+    --pizarra-profundo: #30515e; /* Color premium para lectura y botones */
+    
+    /* Variaciones */
+    --blanco-puro: #ffffff;
+    --texto-cuerpo: #414a3e;     /* Gris verdoso oscuro muy limpio para lectura */
+
+    /* Fuentes */
+    --font-cursive: 'Great Vibes', cursive;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--blanco-puro);
+    color: var(--texto-cuerpo);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+section {
+    padding: 110px 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* --- Tipografías Estilo Alta Gala --- */
+h1 {
+    font-family: var(--font-cursive);
+    font-size: clamp(3.8rem, 8.5vw, 5.8rem);
+    color: var(--pizarra-profundo);
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+    color: var(--pizarra-profundo);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--verde-oliva);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 650px;
+    margin: 0 auto 20px auto;
+    color: var(--texto-cuerpo);
+}
+
+.section-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--verde-musgo);
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+/* --- Tarjetas Concepto Jardín Minimalista --- */
+.card, .info-card, .gift-card {
+    background: var(--blanco-puro);
+    border: 1px solid rgba(215, 213, 159, 0.35);
+    padding: 50px 35px;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(48, 81, 94, 0.02);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover, .info-card:hover, .gift-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(48, 81, 94, 0.06);
+    border-color: var(--verde-glauco);
+}
+
+/* --- Botones Finos --- */
+button, .btn {
+    font-family: var(--font-sans);
+    background: var(--pizarra-profundo);
+    color: var(--blanco-puro);
+    border: none;
+    padding: 16px 45px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    border-radius: 0px; 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(48, 81, 94, 0.15);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    letter-spacing: 3.5px;
+    background-color: #213942;
+    box-shadow: 0 6px 20px rgba(48, 81, 94, 0.25);
+}
+
+/* Control de música discreto */
+.music-control {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border-radius: 50%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background: var(--blanco-puro);
+    color: var(--pizarra-profundo);
+    border: 1px solid var(--verde-glauco);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* ==========================================================================
+   2. SECCIONES ESPECÍFICAS
+   ========================================================================== */
+
+/* Pantalla Inicial (Welcome Limpio y Elegante) */
+#welcome {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blanco-puro);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#welcome.fade-out {
+    transform: translateY(-100vh);
+}
+
+#welcome .overlay {
+    padding: 60px 40px;
+    border: 1px solid rgba(215, 213, 159, 0.3);
+    background: #fafaf7;
+    border-radius: 4px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.02);
+    text-align: center;
+}
+
+#welcome .subtitle {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    color: var(--verde-musgo);
+    display: block;
+    margin-bottom: 20px;
+}
+
+#welcome h1 {
+    color: var(--pizarra-profundo);
+    margin-bottom: 20px;
+}
+
+#welcome button {
+    margin-top: 25px;
+}
+
+/* Portada (Hero) */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                url('https://images.unsplash.com/photo-1546842931-886c185b4c8c?q=80&w=1200') no-repeat center center/cover;
+    text-align: center;
+}
+
+.hero .event {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--verde-musgo);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    color: var(--pizarra-profundo);
+    margin-bottom: 25px;
+}
+
+.hero .intro-text {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    max-width: 580px;
+    margin-bottom: 45px;
+    color: var(--texto-cuerpo);
+}
+
+.hero .day-name {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1.1rem;
+    color: var(--pizarra-profundo);
+    margin-bottom: 5px;
+}
+
+.hero h3 {
+    font-size: 1.9rem;
+    color: var(--verde-oliva);
+    font-weight: 400;
+}
+
+/* Cuenta Regresiva */
+#countdown {
+    background-color: var(--crema-fondo);
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.countdown div {
+    background: var(--blanco-puro);
+    padding: 24px 20px;
+    min-width: 110px;
+    border-radius: 4px;
+    border: 1px solid rgba(215, 213, 159, 0.2);
+}
+
+.countdown span {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    color: var(--pizarra-profundo);
+    display: block;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.countdown small {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: var(--verde-musgo);
+}
+
+/* ==========================================================================
+   NUEVO REDISEÑO: NUESTRA HISTORIA (Alta Gala Editorial)
+   ========================================================================== */
+#our-story {
+    background-color: var(--blanco-puro);
+    position: relative;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 100px; /* Gran espacio para que respire el diseño */
+    max-width: 800px;
+    margin: 80px auto 0 auto;
+    position: relative;
+}
+
+/* Línea central ultra delgada y fina */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--verde-glauco) 15%, var(--verde-glauco) 85%, transparent);
+}
+
+.timeline-item {
+    position: relative;
+    width: 45%; /* Deja espacio libre del otro lado */
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* El segundo elemento se alinea orgánicamente a la derecha */
+.timeline-item:nth-child(even) {
+    self-align: flex-end;
+    margin-left: auto;
+    text-align: left;
+}
+
+.timeline-item:nth-child(odd) {
+    margin-right: auto;
+}
+
+/* Números tipográficos gigantes que flotan elegantemente detrás del texto */
+.timeline-item::before {
+    font-family: var(--font-serif);
+    font-size: 8rem;
+    font-weight: 700;
+    color: rgba(235, 234, 210, 0.45); /* --crema-fondo translúcido */
+    position: absolute;
+    top: -45px;
+    right: -10px;
+    z-index: 0;
+    line-height: 1;
+}
+.timeline-item:nth-child(1)::before { content: 'I'; }
+.timeline-item:nth-child(2)::before { content: 'II'; }
+
+.timeline-item:nth-child(even)::before {
+    left: -10px;
+    right: auto;
+}
+
+/* Contenido dentro del bloque de texto */
+.timeline-item .story-date {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--verde-musgo);
+    margin-bottom: 12px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    color: var(--pizarra-profundo);
+    margin-bottom: 15px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-item p {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555d52;
+    margin: 0;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+}
+
+/* Pequeño e imperceptible nodo de intersección sobre la línea */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: -11.5%;
+    width: 6px;
+    height: 6px;
+    background-color: var(--verde-oliva);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -11.5%;
+    right: auto;
+}
+
+/* ==========================================================================
+   RESTO DE SECCIONES (Siguen Perfectas)
+   ========================================================================== */
+
+/* Padres y Padrinos */
+.parents-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-top: 40px;
+}
+
+.role {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--verde-musgo);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--pizarra-profundo);
+}
+
+.card p {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--verde-musgo);
+    margin: 8px 0;
+}
+
+.main-godparents {
+    max-width: 550px;
+    margin: 40px auto 0 auto;
+    border-top: 2px solid var(--verde-glauco);
+    border-radius: 4px;
+}
+
+/* Detalles del Evento */
+#information {
+    background-color: var(--crema-fondo);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.info-card i {
+    font-size: 1.8rem;
+    color: var(--verde-oliva);
+    margin-bottom: 20px;
+}
+
+.info-card h3 {
+    color: var(--pizarra-profundo);
+    margin-bottom: 10px;
+}
+
+.info-card p:first-of-type {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--verde-oliva);
+    margin-bottom: 10px;
+}
+
+/* Cronograma Líneas Limpias */
+#itinerary {
+    background-color: var(--blanco-puro);
+}
+
+.itinerary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 50px auto 0 auto;
+}
+
+.itinerary-item {
+    display: flex;
+    align-items: center;
+    background: #fafaf7;
+    padding: 20px 40px;
+    border: 1px solid rgba(215, 213, 159, 0.25);
+    border-radius: 4px;
+}
+
+.itinerary-item .time {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--pizarra-profundo);
+    min-width: 110px;
+    text-align: left;
+}
+
+.itinerary-item p {
+    margin: 0;
+    text-align: left;
+    font-weight: 400;
+    color: var(--texto-cuerpo);
+}
+
+/* Código de Vestimenta */
+#dress-code {
+    background-color: #fafaf7;
+    border-top: 1px solid rgba(215, 213, 159, 0.3);
+    border-bottom: 1px solid rgba(215, 213, 159, 0.3);
+}
+
+.dress-icon {
+    font-size: 2.2rem;
+    color: var(--verde-oliva);
+    margin-bottom: 20px;
+}
+
+#dress-code h3 {
+    color: var(--pizarra-profundo);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+/* Ubicación */
+#location iframe {
+    margin-top: 35px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid var(--verde-glauco) !important;
+}
+
+/* Mesa de Regalos */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.gift-card i {
+    font-size: 2rem;
+    color: var(--pizarra-profundo);
+    margin-bottom: 15px;
+}
+
+.gift-card h3 {
+    margin-bottom: 10px;
+}
+
+/* Galería de Fotos (100% Responsiva) */
+#gallery {
+    background-color: var(--crema-fondo);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.4s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.01);
+}
+
+/* Formulario RSVP */
+#rsvp {
+    background-color: var(--blanco-puro);
+}
+
+form {
+    max-width: 550px;
+    margin: 40px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+form input, form textarea {
+    font-family: var(--font-sans);
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid rgba(215, 213, 159, 0.4);
+    background-color: #fafaf7;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--texto-cuerpo);
+    transition: all 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--pizarra-profundo);
+    background-color: var(--blanco-puro);
+}
+
+form textarea {
+    height: 130px;
+    resize: none;
+}
+
+/* Despedida */
+#thanks {
+    background: linear-gradient(to bottom, var(--blanco-puro), var(--crema-fondo));
+    padding: 140px 0;
+}
+
+#thanks h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--pizarra-profundo);
+}
+
+/* Footer */
+footer {
+    background-color: var(--pizarra-profundo);
+    color: var(--blanco-puro);
+    text-align: center;
+    padding: 35px 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (min-width: 600px) {
+    .parents-grid, .info-grid, .gifts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Adaptabilidad perfecta de la nueva línea de tiempo en móviles */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+        transform: none;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        text-align: left !important;
+        padding-left: 45px;
+        padding-right: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        margin-left: 0;
+    }
+    
+    .timeline-item::after {
+        left: 17.5px !important;
+        right: auto !important;
+        top: 6px;
+    }
+
+    .timeline-item::before {
+        left: 35px;
+        right: auto;
+        top: -35px;
+        font-size: 6rem;
+    }
+}
+
+@media (max-width: 500px) {
+    section {
+        padding: 70px 0;
+    }
+    
+    .countdown {
+        gap: 12px;
+    }
+    
+    .countdown div {
+        min-width: 85px;
+        padding: 16px 10px;
+        flex: 1 1 40%;
+    }
+    
+    .countdown span {
+        font-size: 2.2rem;
+    }
+    
+    .itinerary-item {
+        padding: 15px 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .gallery-grid img {
+        height: 290px;
+    }
+}
